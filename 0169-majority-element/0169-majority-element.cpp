@@ -1,27 +1,16 @@
 class Solution {
 public:
-    int majorityElement(vector<int>& nums) {
-         std::sort(nums.begin(), nums.end());
-        int maxCount = 0;
-        int count = 0;
-        int value = 0;
-        if(nums.size() == 1){
-            return nums[0];
-        }
-        for (int i = 0; i < nums.size() -1; i++)
+    int majorityElement(std::vector<int> &nums)
+    {
+        std::unordered_map<int, int> map;
+        for (int num : nums)
         {
-            if(nums[i] == nums[i+1]){
-                count ++;
-            }else{
-                count = 0;
+            map[num]++;
+            if (map[num] > nums.size() / 2)
+            {
+                return num;
             }
-            
-            if(count > maxCount){
-                maxCount = count;
-                value = nums[i];
-            }
-            
         }
-        return value;
+        return -1;
     }
 };
