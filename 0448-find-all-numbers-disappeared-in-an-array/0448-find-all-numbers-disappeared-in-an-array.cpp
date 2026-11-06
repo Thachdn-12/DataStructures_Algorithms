@@ -1,22 +1,11 @@
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
-        std::vector<int> res;
-        for (int i = 0; i < nums.size(); i++)
-        {
-            int index = std::abs(nums[i]) - 1;
-
-            if (nums[index] > 0)
-            {
-                nums[index] = -nums[index];
-            }
-        }
-
-        for (int i = 0; i < nums.size(); i++)
-        {
-            if (nums[i] > 0)
-            {
-                res.push_back(i + 1);
+         std::vector<int> res;
+        std::unordered_set<int> contains(nums.begin(), nums.end());
+        for(int i=0; i<nums.size(); i++){
+            if(contains.find(i+1) == contains.end()){
+                res.push_back(i+1);
             }
         }
         return res;
